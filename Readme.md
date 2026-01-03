@@ -1,4 +1,4 @@
-# Backend do projeto
+# Backend do projeto, gerenciador de funcionários
 
 ## Tecnologias
 + Java 21
