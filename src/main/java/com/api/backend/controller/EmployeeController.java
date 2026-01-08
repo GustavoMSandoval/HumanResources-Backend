@@ -18,7 +18,7 @@ import com.api.backend.service.EmployeeService;
 
 @RestController
 @RequestMapping("/api/employees")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:4200"})
 public class EmployeeController {
 
     private final EmployeeService service;
