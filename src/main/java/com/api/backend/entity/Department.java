@@ -3,6 +3,7 @@ package com.api.backend.entity;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -21,10 +22,13 @@ public class Department {
     private Long id;
 
     @NotBlank
+    @Column(name = "name", unique = true)
     private String name;
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Employee> employees;
+
+    public Department(){}
 
     public Department(String name) {
         this.name = name;

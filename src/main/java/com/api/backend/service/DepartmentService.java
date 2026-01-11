@@ -1,7 +1,5 @@
 package com.api.backend.service;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import com.api.backend.dtos.department.DepartmentRequest;
