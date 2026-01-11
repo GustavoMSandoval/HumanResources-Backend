@@ -6,16 +6,20 @@ import org.springframework.stereotype.Service;
 
 import com.api.backend.dtos.employee.EmployeeRequest;
 import com.api.backend.dtos.employee.EmployeeResponse;
+import com.api.backend.entity.Department;
 import com.api.backend.entity.Employee;
+import com.api.backend.repository.DepartmentRepository;
 import com.api.backend.repository.EmployeeRepository;
 import com.api.backend.validator.CPFValidator;
 
 @Service
 public class EmployeeService {
+    private final DepartmentRepository departmentRepository;
     private final EmployeeRepository repository;
     private final CPFValidator cpfValidator;
 
-    public EmployeeService(EmployeeRepository repository, CPFValidator cpfValidator) {
+    public EmployeeService(DepartmentRepository departmentRepository, EmployeeRepository repository, CPFValidator cpfValidator) {
+        this.departmentRepository = departmentRepository;
         this.repository = repository;
         this.cpfValidator = cpfValidator;
     }
@@ -36,8 +40,10 @@ public class EmployeeService {
             throw new RuntimeException("Invalid CPF!");
         }
 
+        Department department = departmentRepository.findById(request.departmentId()).get();
+
         Employee employee = new Employee(
-            request.department(),
+            department,
             request.CPF(), 
             request.email(), 
             request.name(), 
