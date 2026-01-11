@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.api.backend.dtos.EmployeeRequest;
-import com.api.backend.dtos.EmployeeResponse;
+import com.api.backend.dtos.employee.EmployeeRequest;
+import com.api.backend.dtos.employee.EmployeeResponse;
 import com.api.backend.entity.Employee;
 import com.api.backend.repository.EmployeeRepository;
 import com.api.backend.validator.CPFValidator;
@@ -37,6 +37,7 @@ public class EmployeeService {
         }
 
         Employee employee = new Employee(
+            request.department(),
             request.CPF(), 
             request.email(), 
             request.name(), 
