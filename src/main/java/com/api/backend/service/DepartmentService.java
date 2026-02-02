@@ -1,5 +1,7 @@
 package com.api.backend.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.api.backend.dtos.department.DepartmentRequest;
@@ -41,6 +43,19 @@ public class DepartmentService {
 
         return toResponse(repository.save(department));
 
+    }
+
+    public DepartmentResponse findById(Long id) {
+
+        return toResponse(repository.findById(id).get());
+
+    }
+
+    public List<DepartmentResponse> list() {
+        return repository.findAll()
+        .stream()
+        .map(this::toResponse)
+        .toList();
     }
 
     
